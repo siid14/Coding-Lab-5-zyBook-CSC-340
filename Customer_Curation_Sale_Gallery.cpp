@@ -62,4 +62,49 @@ namespace NS_ARTGALLERY
         saleDate = theDate;
     }
 
+    // Gallery functions
+    int Gallery::getArtistID(string name, string email) const
+    {
+    }
+    int Gallery::getCustomerID(string name, string email) const
+    {
+    }
+    vector<int> Gallery::getIDsOfArtworksForSale() const
+    {
+    }
+    vector<int> Gallery::getIDsOfArtistsForSale() const
+    {
+    }
+    vector<pair<string, int>> Gallery::genArtworksReport(ReportType reportType)
+    {
+    }
+    void Gallery::setID(int theID)
+    {
+        ID = theID;
+    }
+    void Gallery::setName(string theName)
+    {
+        name = theName
+    }
+    void Gallery::setAddress(string theAddr)
+    {
+        address = theAddr;
+    }
+    void Gallery::setWebURL(string theURL)
+    {
+        webURL = theURL;
+    }
+    int Gallery::addArtist(Artist artist)
+    {
+        }
+    int Gallery::addCustomer(Customer customer)
+    {
+    }
+    void Gallery::curateArtwork(Artwork newItem, Artist artist)
+    {
+    }
+    void Gallery::sellArtwork(int artworkID, Customer customer)
+    {
+    }
+
 } // end of NS_ARTGALLERY
