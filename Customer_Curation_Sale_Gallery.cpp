@@ -16,7 +16,28 @@ namespace NS_ARTGALLERY
     //  implement/define the member functions of the following classes:
     //     1. class Customer; 2. class Curation; 3. class Sale; 4. class ArtGallery
 
-    // Customer functions
+    // * Customer functions
+
+    int Customer::getID() const
+    {
+        return ID;
+    }
+
+    string Customer::getName() const
+    {
+        return name;
+    }
+
+    string Customer::getEmail() const
+    {
+        return email;
+    }
+
+    string Customer::getAddress() const
+    {
+        return address;
+    }
+
     void Customer::setID(int theID)
     {
         ID = theID;
@@ -34,7 +55,22 @@ namespace NS_ARTGALLERY
         address = theAddress;
     }
 
-    // Curation functions
+    // * Curation functions
+
+    int Curation::getArtworkID() const
+    {
+        return artworkID;
+    }
+
+    int Curation::getArtistID() const
+    {
+        return artistID;
+    }
+
+    Date Curation::getCurationDate() const
+    {
+        return curationDate;
+    }
     void Curation::setArtworkID(int theID)
     {
         artworkID = theID;
@@ -48,7 +84,25 @@ namespace NS_ARTGALLERY
         curationDate = theDate;
     }
 
-    // Sale functions
+    // * Sale functions
+    int Sale::getCustomerID() const
+    {
+        return customerID;
+    }
+
+    // return a sale's artworkID
+    int Sale::getArtworkID() const
+    {
+
+        return artworkID;
+    }
+
+    // return a sale's date
+    Date Sale::getSaleDate() const
+    {
+        return saleDate;
+    }
+
     void Sale::setCustomerID(int theID)
     {
         customerID = theID;
@@ -62,7 +116,44 @@ namespace NS_ARTGALLERY
         saleDate = theDate;
     }
 
-    // Gallery functions
+    // * Gallery functions
+
+    int Gallery::getID() const
+    {
+        return ID;
+    }
+    string Gallery::getName() const
+    {
+        return name;
+    }
+    string Gallery::getAddress() const
+    {
+        return address;
+    }
+    string Gallery::getWebURL() const
+    {
+        return webURL;
+    }
+
+    unsigned long Gallery::num_artists() const
+    {
+    }
+    unsigned long Gallery::num_artworksCurated() const
+    {
+    }
+    unsigned long Gallery::num_artworksForSale() const
+    {
+    }
+    unsigned long Gallery::num_customers() const
+    {
+    }
+    unsigned long Gallery::num_curations() const
+    {
+    }
+    unsigned long Gallery::num_sales() const
+    {
+    }
+
     int Gallery::getArtistID(string name, string email) const
     {
     }
@@ -84,7 +175,7 @@ namespace NS_ARTGALLERY
     }
     void Gallery::setName(string theName)
     {
-        name = theName
+        name = theName;
     }
     void Gallery::setAddress(string theAddr)
     {
@@ -96,7 +187,7 @@ namespace NS_ARTGALLERY
     }
     int Gallery::addArtist(Artist artist)
     {
-        }
+    }
     int Gallery::addCustomer(Customer customer)
     {
     }
@@ -104,6 +195,12 @@ namespace NS_ARTGALLERY
     {
     }
     void Gallery::sellArtwork(int artworkID, Customer customer)
+    {
+    }
+    void Gallery::addCuration(Curation curation)
+    {
+    }
+    void Gallery::addSale(Sale sale)
     {
     }
 
