@@ -204,6 +204,7 @@ namespace NS_ARTGALLERY
 
         // returns the IDs of for-sale artworks
         vector<int> getIDsOfArtworksForSale() const;
+
         // returns the unique IDs of the artists who have artworks for sale
         //  Note: make sure that you deduplicate the IDs as one artist may have multiple artworks for sale
         vector<int> getIDsOfArtistsForSale() const;

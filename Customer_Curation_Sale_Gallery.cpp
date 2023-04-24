@@ -93,7 +93,6 @@ namespace NS_ARTGALLERY
     // return a sale's artworkID
     int Sale::getArtworkID() const
     {
-
         return artworkID;
     }
 
@@ -137,34 +136,67 @@ namespace NS_ARTGALLERY
 
     unsigned long Gallery::num_artists() const
     {
+        return artistsList.size();
     }
     unsigned long Gallery::num_artworksCurated() const
     {
+        return artworksCurated.size();
     }
     unsigned long Gallery::num_artworksForSale() const
     {
+        return artworksForSale.size();
     }
     unsigned long Gallery::num_customers() const
     {
+        return customersList.size();
     }
     unsigned long Gallery::num_curations() const
     {
+        return curationsRecords.size();
     }
     unsigned long Gallery::num_sales() const
     {
+        return salesRecords.size();
     }
 
     int Gallery::getArtistID(string name, string email) const
     {
+        for (auto artist : artistsList)
+        {
+            if (artist.Artist::getName() == name && artist.Artist::getEmail() == email)
+            {
+                return artist.Artist::getID();
+            }
+            else
+                return -1;
+        }
     }
+
     int Gallery::getCustomerID(string name, string email) const
     {
+        for (auto customer : customersList)
+        {
+            if (customer.Customer::getName() == name && customer.Customer::getEmail() == email)
+            {
+                return customer.Customer::getID();
+            }
+            else
+                return -1;
+        }
     }
     vector<int> Gallery::getIDsOfArtworksForSale() const
     {
+        for (auto artwork : artworksForSale)
+        {
+            cout << artwork.Artwork::getID() << "\n";
+        }
     }
     vector<int> Gallery::getIDsOfArtistsForSale() const
     {
+        for (auto artwork : artworksForSale)
+        {
+            cout << artwork.Artwork::getArtistID() << "\n";
+        }
     }
     vector<pair<string, int>> Gallery::genArtworksReport(ReportType reportType)
     {
