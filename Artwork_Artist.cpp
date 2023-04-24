@@ -14,7 +14,48 @@ namespace NS_ARTGALLERY
 
     //*** implement all the functions declared in "Artwork_Artist.h"
 
-    // Artwork functions
+    // * Artwork functions
+    int Artwork::getID() const
+    {
+        return ID;
+    }
+    int Artwork::getArtistID() const
+    {
+        return artistID;
+    }
+    ArtType Artwork::getType() const
+    {
+        return type;
+    }
+    ArtStyle Artwork::getStyle() const
+    {
+        return style;
+    }
+    ArtSubject Artwork::getSubject() const
+    {
+        return subject;
+    }
+    double Artwork::getYearMade() const
+    {
+        return yearMade;
+    }
+    double Artwork::getWidth() const
+    {
+        return width;
+    }
+    double Artwork::getHeight() const
+    {
+        return height;
+    }
+    double Artwork::getDepth() const
+    {
+        return depth;
+    }
+    double Artwork::getPrice() const
+    {
+        return price;
+    }
+
     void Artwork::setID(int newID)
     {
         ID = newID;
@@ -50,7 +91,37 @@ namespace NS_ARTGALLERY
         price = thePrice;
     }
 
-    // Artist functions
+    // * Artist functions
+    int Artist::getID() const
+    {
+        return ID;
+    }
+
+    string Artist::getName() const
+    {
+        return name;
+    }
+
+    string Artist::getEmail() const
+    {
+        return email;
+    }
+
+    int Artist::getBirthYear() const
+    {
+        return birthYear;
+    }
+
+    string Artist::getBirthPlace() const
+    {
+        return birthPlace;
+    }
+
+    ArtType Artist::getPrimaryArtType() const
+    {
+        return primaryArtType;
+    }
+
     void Artist::setID(int theID)
     {
         ID = theID;
