@@ -42,14 +42,17 @@ namespace NS_ARTGALLERY
     {
         ID = theID;
     }
+
     void Customer::setName(string theName)
     {
         name = theName;
     }
+
     void Customer::setEmail(string theEmail)
     {
         email = theEmail;
     }
+
     void Customer::setAddress(string theAddress)
     {
         address = theAddress;
@@ -71,14 +74,17 @@ namespace NS_ARTGALLERY
     {
         return curationDate;
     }
+
     void Curation::setArtworkID(int theID)
     {
         artworkID = theID;
     }
+
     void Curation::setArtistID(int theID)
     {
         artistID = theID;
     }
+
     void Curation::setCurationDate(Date theDate)
     {
         curationDate = theDate;
@@ -106,10 +112,12 @@ namespace NS_ARTGALLERY
     {
         customerID = theID;
     }
+
     void Sale::setArtworkID(int theID)
     {
         artworkID = theID;
     }
+
     void Sale::setSaleDate(Date theDate)
     {
         saleDate = theDate;
@@ -121,14 +129,17 @@ namespace NS_ARTGALLERY
     {
         return ID;
     }
+
     string Gallery::getName() const
     {
         return name;
     }
+
     string Gallery::getAddress() const
     {
         return address;
     }
+
     string Gallery::getWebURL() const
     {
         return webURL;
@@ -138,22 +149,27 @@ namespace NS_ARTGALLERY
     {
         return artistsList.size();
     }
+
     unsigned long Gallery::num_artworksCurated() const
     {
         return artworksCurated.size();
     }
+
     unsigned long Gallery::num_artworksForSale() const
     {
         return artworksForSale.size();
     }
+
     unsigned long Gallery::num_customers() const
     {
         return customersList.size();
     }
+
     unsigned long Gallery::num_curations() const
     {
         return curationsRecords.size();
     }
+
     unsigned long Gallery::num_sales() const
     {
         return salesRecords.size();
@@ -184,6 +200,7 @@ namespace NS_ARTGALLERY
                 return -1;
         }
     }
+
     vector<int> Gallery::getIDsOfArtworksForSale() const
     {
         for (auto artwork : artworksForSale)
@@ -191,6 +208,7 @@ namespace NS_ARTGALLERY
             cout << artwork.Artwork::getID() << "\n";
         }
     }
+
     vector<int> Gallery::getIDsOfArtistsForSale() const
     {
         for (auto artwork : artworksForSale)
@@ -198,42 +216,252 @@ namespace NS_ARTGALLERY
             cout << artwork.Artwork::getArtistID() << "\n";
         }
     }
+
     vector<pair<string, int>> Gallery::genArtworksReport(ReportType reportType)
     {
+        vector<pair<string, int>> report;
+
+        if (reportType == ReportType::artType)
+        {
+            int paintingCount = 0;
+            int photographyCount = 0;
+            int drawingCount = 0;
+            int sculptureCount = 0;
+            int otherCount = 0;
+
+            for (auto &artwork : Gallery::artworksCurated)
+            {
+                switch (artwork.getType())
+                {
+                case ArtType::painting:
+                    ++paintingCount;
+                    break;
+                case ArtType::photography:
+                    ++photographyCount;
+                    break;
+                case ArtType::drawing:
+                    ++drawingCount;
+                    break;
+                case ArtType::sculpture:
+                    ++sculptureCount;
+                    break;
+                default:
+                    ++otherCount;
+                    break;
+                }
+            }
+
+            report.push_back(make_pair(toStr_ArtType(ArtType::painting), paintingCount));
+            report.push_back(make_pair(toStr_ArtType(ArtType::photography), photographyCount));
+            report.push_back(make_pair(toStr_ArtType(ArtType::drawing), drawingCount));
+            report.push_back(make_pair(toStr_ArtType(ArtType::sculpture), sculptureCount));
+            report.push_back(make_pair(toStr_ArtType(ArtType::other), otherCount));
+        }
+        else if (reportType == ReportType::artStyle)
+        {
+            int fineArtCount = 0;
+            int abstractCount = 0;
+            int modernCount = 0;
+            int popArtCount = 0;
+            int otherCount = 0;
+
+            for (auto &artwork : Gallery::artworksCurated)
+            {
+                switch (artwork.getType())
+                {
+                case ArtStyle::fineArt:
+                    ++fineArtCount;
+                    break;
+                case ArtStyle::abstract:
+                    ++abstractCount;
+                    break;
+                case ArtStyle::modern:
+                    ++modernCount;
+                    break;
+                case ArtStyle::popArt:
+                    ++popArtCount;
+                    break;
+                default:
+                    ++otherCount;
+                    break;
+                }
+            }
+
+            report.push_back(make_pair(toStr_ArtType(ArtStyle::fineArt), fineArtCount));
+            report.push_back(make_pair(toStr_ArtType(ArtStyle::abstract), abstractCount));
+            report.push_back(make_pair(toStr_ArtType(ArtStyle::modern), modernCount));
+            report.push_back(make_pair(toStr_ArtType(ArtStyle::popArt), popArtCount));
+            report.push_back(make_pair(toStr_ArtType(ArtStyle::other), otherCount));
+        }
+        else if (reportType == ReportType::artSubject)
+        {
+            int natureCount = 0;
+            int portraitCount = 0;
+            int animalCount = 0;
+            int cartoonCount = 0;
+            int otherCount = 0;
+
+            for (auto &artwork : Gallery::artworksCurated)
+            {
+                switch (artwork.getType())
+                {
+                case ArtSubject::nature:
+                    ++natureCount;
+                    break;
+                case ArtSubject::portrait:
+                    ++portraitCount;
+                    break;
+                case ArtSubject::animal:
+                    ++animalCount;
+                    break;
+                case ArtSubject::cartoon:
+                    ++cartoonCount;
+                    break;
+                default:
+                    ++otherCount;
+                    break;
+                }
+            }
+
+            report.push_back(make_pair(toStr_ArtType(ArtSubject::nature), natureCount));
+            report.push_back(make_pair(toStr_ArtType(ArtSubject::portrait), portraitCount));
+            report.push_back(make_pair(toStr_ArtType(ArtSubject::animal), animalCount));
+            report.push_back(make_pair(toStr_ArtType(ArtSubject::cartoon), cartoonCount));
+            report.push_back(make_pair(toStr_ArtType(ArtSubject::other), otherCount));
+        }
+
+        return report;
     }
+
     void Gallery::setID(int theID)
     {
         ID = theID;
     }
+
     void Gallery::setName(string theName)
     {
         name = theName;
     }
+
     void Gallery::setAddress(string theAddr)
     {
         address = theAddr;
     }
+
     void Gallery::setWebURL(string theURL)
     {
         webURL = theURL;
     }
+
     int Gallery::addArtist(Artist artist)
     {
+        for (auto existingArtist : Gallery::artistsList)
+        {
+
+            // check if the artist is already on the artistList using their name and email
+            if (existingArtist.getName() == artist.getName() && existingArtist.getEmail() == artist.getEmail())
+            {
+                return existingArtist.getID();
+            }
+
+            // Generate a unique ID for the artist
+            static int artistID = uniqueIDs::next_artistID();
+
+            // Set the artist's ID and add it to the list
+            artist.setID(artistID);
+            artistsList.push_back(artist);
+        }
+        return artist.getID(); // return artist's ID
     }
+
     int Gallery::addCustomer(Customer customer)
     {
+        for (auto existingCustomer : Gallery::customersList)
+        {
+            // check if the customer is already on the artistList using their name and email
+            if (existingCustomer.getName() == customer.getName() && existingCustomer.getEmail() == customer.getEmail())
+            {
+                return existingCustomer.getID();
+            }
+
+            // Generate a unique ID for the customer
+            static int customerID = uniqueIDs::next_customerID();
+
+            // Set the artist's ID and add it to the list
+            customer.setID(customerID);
+            customersList.push_back(customer);
+        }
+        return customer.getID(); // return customer's ID
     }
+
     void Gallery::curateArtwork(Artwork newItem, Artist artist)
     {
+        // check if the artist is already on the artistList using their name and email
+        auto it = std::find_if(Gallery::artistsList.begin(), Gallery::artistsList.end(),
+                               [&](const Artist &existingArtist)
+                               {
+                                   return existingArtist.getName() == artist.getName() &&
+                                          existingArtist.getEmail() == artist.getEmail();
+                               });
+
+        if (it != Gallery::artistsList.end()) // artist is not new
+        {
+            artist.setID(it->getID()); // retrieve their ID from the artistList
+        }
+        else // artist is new
+        {
+            // generate a unique ID for the artist
+            int artistID = uniqueIDs::next_artistID();
+
+            artist.setID(artistID);        // set the artist's ID
+            artistsList.push_back(artist); // add artist to artistsList
+        }
+
+        // assign newItem a unique ID
+        int artworkID = uniqueIDs::next_artworkID();
+        newItem.setID(artworkID);
+
+        // add newItem to artworkListCurated and artworkListForSale
+        artworksCurated.push_back(newItem);
+        artworksForSale.push_back(newItem);
+
+        // update curationRecords to include this new curation
+        curationsRecords.push_back(Curation(newItem.getID(), artist.getID(), getTodaysDate()));
     }
+
     void Gallery::sellArtwork(int artworkID, Customer customer)
     {
+
+        // check if the customer is already on the customersList using their name and email
+        auto it = std::find_if(Gallery::customersList.begin(), Gallery::customersList.end(),
+                               [&](const Artist &existingCustomer)
+                               {
+                                   return existingCustomer.getName() == customer.getName() &&
+                                          existingCustomer.getEmail() == customer.getEmail();
+                               });
+
+        if (it != Gallery::customersList.end()) // customer is not new
+        {
+            customer.setID(it->getID()); // retrieve their ID from the customersList
+        }
+        else // customer is new
+        {
+            // generate a unique ID for the customer
+            int customerID = uniqueIDs::next_customerID();
+
+            customer.setID(customerID);        // set the customer's ID
+            customersList.push_back(customer); // add customer to artistsList
+        }
     }
+
     void Gallery::addCuration(Curation curation)
     {
+        curationsRecords.push_back(curation);
     }
+
     void Gallery::addSale(Sale sale)
     {
+        salesRecords.push_back(sale);
     }
 
 } // end of NS_ARTGALLERY

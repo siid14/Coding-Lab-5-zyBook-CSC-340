@@ -230,7 +230,7 @@ namespace NS_ARTGALLERY
         // returns artistID
         int addArtist(Artist artist);
 
-        // adds a customer to the customerList. Make sure that (1) this customer is not already on customerList by checking their name & email combination; and (2) this customer has a valid ID by generating a unique ID. Do nothing if the artist is already on the list.Do nothing if this customer is already on the list.
+        // adds a customer to the customerList. Make sure that (1) this customer is not already on customerList by checking their name & email combination; and (2) this customer has a valid ID by generating a unique ID. Do nothing if the artist is already on the list.
         // returns customerID.
         int addCustomer(Customer customer);
 

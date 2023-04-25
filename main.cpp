@@ -2,8 +2,8 @@
 //  main.cpp
 //  ArtGallerySimplified
 //
-// created by [your name]
-// date:
+// created by [Sidney Thomas]
+// date: 04/23/2023
 
 #include <iostream>
 #include "util_date_uniqueIDs.h"
