@@ -24,7 +24,7 @@ namespace NS_UTESTS
     //   . setStyle() and getStyle()    --->bool test_set_getStyle_Artwork();
     //   . setDimension(), getWidth(), getHeight() and getDepth() --->bool test_setDimension_Artwork();
 
-    // default constructor and accessors --->bool test_Artwork();
+    // default constructor and accessors ---> bool test_Artwork();
     bool test_Artwork()
     {
         // create an Artwork object with default constructor
@@ -74,7 +74,7 @@ namespace NS_UTESTS
 
         return true;
     }
-    // setStyle() and getStyle()    --->bool test_set_getStyle_Artwork();
+    // setStyle() and getStyle() ---> bool test_set_getStyle_Artwork();
     bool test_set_getStyle_Artwork()
     {
         Artwork artwork;
@@ -117,7 +117,7 @@ namespace NS_UTESTS
         return true;
     }
 
-    // setDimension(), getWidth(), getHeight() and getDepth() --->bool test_setDimension_Artwork();
+    // setDimension(), getWidth(), getHeight() and getDepth() ---> bool test_setDimension_Artwork();
     bool test_setDimension_Artwork()
     {
         // create a new artwork
@@ -153,6 +153,68 @@ namespace NS_UTESTS
     //  write one unit test each for the following member functions of the Artist class
     //   .default constructor and accessors -->bool test_Artist();
     //   .setID() and getID()--->bool test_set_getID_Artist();
+
+    // default constructor and accessors -->bool test_Artist();
+    bool test_Artist()
+    {
+        Artist artistTest;
+
+        if (artistTest.getID() != -1)
+        {
+            return false;
+        }
+
+        if (artistTest.getName() != "na")
+        {
+            return false;
+        }
+
+        if (artistTest.getEmail() != "na")
+        {
+            return false;
+        }
+
+        if (artistTest.getBirthYear() != 1900)
+        {
+            return false;
+        }
+
+        if (artistTest.getBirthPlace() != "na")
+        {
+            return false;
+        }
+
+        if (artistTest.getPrimaryArtType() != ArtType::painting)
+        {
+            return false;
+        }
+    }
+
+    // setID() and getID()--->bool test_set_getID_Artist();
+    bool test_set_getID_Artist()
+    {
+        Artist artistTest;
+
+        artistTest.setID(666);
+        if (artistTest.getID() != 666)
+        {
+            return false;
+        }
+
+        artistTest.setID(111);
+        if (artistTest.getID() != 111)
+        {
+            return false;
+        }
+
+        artistTest.setID(999);
+        if (artistTest.getID() != 999)
+        {
+            return false;
+        }
+
+        return true;
+    }
 
     // class Customer; a partial unit testing.
     // write one unit test each for the following member functions of the Customer class
