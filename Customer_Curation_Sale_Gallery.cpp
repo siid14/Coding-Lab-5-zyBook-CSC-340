@@ -287,11 +287,11 @@ namespace NS_ARTGALLERY
                 }
             }
 
-            report.push_back(make_pair(toStr_ArtType(ArtStyle::fineArt), fineArtCount));
-            report.push_back(make_pair(toStr_ArtType(ArtStyle::abstract), abstractCount));
-            report.push_back(make_pair(toStr_ArtType(ArtStyle::modern), modernCount));
-            report.push_back(make_pair(toStr_ArtType(ArtStyle::popArt), popArtCount));
-            report.push_back(make_pair(toStr_ArtType(ArtStyle::other), otherCount));
+            report.push_back(make_pair(toStr_ArtStyle(ArtStyle::fineArt), fineArtCount));
+            report.push_back(make_pair(toStr_ArtStyle(ArtStyle::abstract), abstractCount));
+            report.push_back(make_pair(toStr_ArtStyle(ArtStyle::modern), modernCount));
+            report.push_back(make_pair(toStr_ArtStyle(ArtStyle::popArt), popArtCount));
+            report.push_back(make_pair(toStr_ArtStyle(ArtStyle::other), otherCount));
         }
         else if (reportType == ReportType::artSubject)
         {
@@ -323,11 +323,11 @@ namespace NS_ARTGALLERY
                 }
             }
 
-            report.push_back(make_pair(toStr_ArtType(ArtSubject::nature), natureCount));
-            report.push_back(make_pair(toStr_ArtType(ArtSubject::portrait), portraitCount));
-            report.push_back(make_pair(toStr_ArtType(ArtSubject::animal), animalCount));
-            report.push_back(make_pair(toStr_ArtType(ArtSubject::cartoon), cartoonCount));
-            report.push_back(make_pair(toStr_ArtType(ArtSubject::other), otherCount));
+            report.push_back(make_pair(toStr_ArtSubject(ArtSubject::nature), natureCount));
+            report.push_back(make_pair(toStr_ArtSubject(ArtSubject::portrait), portraitCount));
+            report.push_back(make_pair(toStr_ArtSubject(ArtSubject::animal), animalCount));
+            report.push_back(make_pair(toStr_ArtSubject(ArtSubject::cartoon), cartoonCount));
+            report.push_back(make_pair(toStr_ArtSubject(ArtSubject::other), otherCount));
         }
 
         return report;
