@@ -183,9 +183,8 @@ namespace NS_ARTGALLERY
             {
                 return artist.Artist::getID();
             }
-            else
-                return -1;
         }
+        return -1;
     }
 
     int Gallery::getCustomerID(string name, string email) const
@@ -196,25 +195,29 @@ namespace NS_ARTGALLERY
             {
                 return customer.Customer::getID();
             }
-            else
-                return -1;
         }
+        return -1;
     }
 
     vector<int> Gallery::getIDsOfArtworksForSale() const
     {
+        vector<int> IDsOfArtworksForSale;
         for (auto artwork : artworksForSale)
         {
             cout << artwork.Artwork::getID() << "\n";
+            IDsOfArtworksForSale.push_back(artwork.Artwork::getID());
         }
+        return IDsOfArtworksForSale;
     }
 
     vector<int> Gallery::getIDsOfArtistsForSale() const
     {
+        vector<int> IDsOfArtistsForSale;
         for (auto artwork : artworksForSale)
         {
             cout << artwork.Artwork::getArtistID() << "\n";
         }
+        return IDsOfArtistsForSale;
     }
 
     vector<pair<string, int>> Gallery::genArtworksReport(ReportType reportType)
@@ -267,7 +270,7 @@ namespace NS_ARTGALLERY
 
             for (auto &artwork : Gallery::artworksCurated)
             {
-                switch (artwork.getType())
+                switch (artwork.getStyle())
                 {
                 case ArtStyle::fineArt:
                     ++fineArtCount;
@@ -303,7 +306,7 @@ namespace NS_ARTGALLERY
 
             for (auto &artwork : Gallery::artworksCurated)
             {
-                switch (artwork.getType())
+                switch (artwork.getSubject())
                 {
                 case ArtSubject::nature:
                     ++natureCount;
@@ -397,14 +400,14 @@ namespace NS_ARTGALLERY
     void Gallery::curateArtwork(Artwork newItem, Artist artist)
     {
         // check if the artist is already on the artistList using their name and email
-        auto it = std::find_if(Gallery::artistsList.begin(), Gallery::artistsList.end(),
+        auto it = std::find_if(artistsList.begin(), artistsList.end(),
                                [&](const Artist &existingArtist)
                                {
                                    return existingArtist.getName() == artist.getName() &&
                                           existingArtist.getEmail() == artist.getEmail();
                                });
 
-        if (it != Gallery::artistsList.end()) // artist is not new
+        if (it != artistsList.end()) // artist is not new
         {
             artist.setID(it->getID()); // retrieve their ID from the artistList
         }
@@ -432,25 +435,42 @@ namespace NS_ARTGALLERY
     void Gallery::sellArtwork(int artworkID, Customer customer)
     {
 
-        // check if the customer is already on the customersList using their name and email
-        auto it = std::find_if(Gallery::customersList.begin(), Gallery::customersList.end(),
-                               [&](const Artist &existingCustomer)
+        // check if the artwork is for sale
+        auto it = std::find_if(artworksForSale.begin(), artworksForSale.end(),
+                               [&](const Artwork &artwork)
                                {
-                                   return existingCustomer.getName() == customer.getName() &&
-                                          existingCustomer.getEmail() == customer.getEmail();
+                                   return artwork.getID() == artworkID;
                                });
 
-        if (it != Gallery::customersList.end()) // customer is not new
+        if (it != artworksForSale.end()) // artwork is for sale
         {
-            customer.setID(it->getID()); // retrieve their ID from the customersList
-        }
-        else // customer is new
-        {
-            // generate a unique ID for the customer
-            int customerID = uniqueIDs::next_customerID();
+            // check if the customer is already on the customersList using their name and email
+            auto it2 = std::find_if(customersList.begin(), customersList.end(),
+                                    [&](const Customer &existingCustomer)
+                                    {
+                                        return existingCustomer.getName() == customer.getName() &&
+                                               existingCustomer.getEmail() == customer.getEmail();
+                                    });
 
-            customer.setID(customerID);        // set the customer's ID
-            customersList.push_back(customer); // add customer to artistsList
+            if (it2 != customersList.end()) // customer is not new
+            {
+                customer.setID(it2->getID()); // retrieve their ID from the customersList
+            }
+            else // customer is new
+            {
+                // generate a unique ID for the customer
+                int customerID = uniqueIDs::next_customerID();
+
+                customer.setID(customerID);        // set the customer's ID
+                customersList.push_back(customer); // add customer to customersList
+            }
+
+            // update the sales records
+            Sale newSale(customer.getID(), artworkID, newSale.getSaleDate());
+            salesRecords.push_back(newSale);
+
+            // remove the artwork from the artworkListForSale
+            artworksForSale.erase(it);
         }
     }
 

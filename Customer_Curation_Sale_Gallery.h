@@ -35,9 +35,9 @@ namespace NS_ARTGALLERY
     {
     public:
         // default constructor: ID(-1),name("na"),email("na"),address("na")
-        Customer();
+        Customer() : ID(-1), name("na"), email("na"), address("na") {}
         // parameterized constructor: ID(theID),name(theName),email(theEmail), address("theAddr")
-        Customer(int theID, string theName, string theEmail, const string theAddr);
+        Customer(int theID, string theName, string theEmail, const string theAddr) : ID(theID), name(theName), email(theEmail), address(theAddr) {}
 
         // accessors
         // returns a customer's ID
@@ -82,9 +82,9 @@ namespace NS_ARTGALLERY
     {
     public:
         // default constructor: artworkID(-1),artistID(-1),curationDate({1,1,2022})
-        Curation();
+        Curation() : artworkID(-1), artistID(-1), curationDate({1, 1, 2022}) {}
         // parameterized constructor: artworkID(theArtworkID),artistID(theArtistID),curationDate(theDate)
-        Curation(int theArtworkID, int theArtistID, Date theDate);
+        Curation(int theArtworkID, int theArtistID, Date theDate) : artworkID(theArtworkID), artistID(theArtistID), curationDate(theDate) {}
 
         // accessors
         // return a curation's artworkID
@@ -124,9 +124,9 @@ namespace NS_ARTGALLERY
     {
     public:
         // default constructor: customerID(-1), artworkID(-1),saleDate({1,1,2022})
-        Sale();
+        Sale() : customerID(-1), artworkID(-1), saleDate({1, 1, 2022}) {}
         // parameterized constructor: customerID(theCustomerID),artworkID(theArtworkID),saleDate(theDate)
-        Sale(int theCustomerID, int theArtworkID, Date theDate);
+        Sale(int theCustomerID, int theArtworkID, Date theDate) : customerID(theCustomerID), artworkID(theArtworkID), saleDate(theDate) {}
 
         // accessors
         // return a sale's customerID
@@ -172,7 +172,7 @@ namespace NS_ARTGALLERY
     {
     public:
         // default constructor: ID(-1),name("na"),address("na"),webURL("na")
-        Gallery();
+        Gallery() : ID(-1), name("na"), address("na"), webURL("na") {}
 
         // accessors
 
@@ -204,7 +204,6 @@ namespace NS_ARTGALLERY
 
         // returns the IDs of for-sale artworks
         vector<int> getIDsOfArtworksForSale() const;
-
         // returns the unique IDs of the artists who have artworks for sale
         //  Note: make sure that you deduplicate the IDs as one artist may have multiple artworks for sale
         vector<int> getIDsOfArtistsForSale() const;
@@ -230,7 +229,7 @@ namespace NS_ARTGALLERY
         // returns artistID
         int addArtist(Artist artist);
 
-        // adds a customer to the customerList. Make sure that (1) this customer is not already on customerList by checking their name & email combination; and (2) this customer has a valid ID by generating a unique ID. Do nothing if the artist is already on the list.
+        // adds a customer to the customerList. Make sure that (1) this customer is not already on customerList by checking their name & email combination; and (2) this customer has a valid ID by generating a unique ID. Do nothing if the artist is already on the list.Do nothing if this customer is already on the list.
         // returns customerID.
         int addCustomer(Customer customer);
 

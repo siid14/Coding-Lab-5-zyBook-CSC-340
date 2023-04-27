@@ -39,8 +39,8 @@ namespace NS_ARTGALLERY
         // Note: the following is a required list of functions.
         //       please feel free to add other functions as you see fit.
 
-        Artwork(); // default constructor: ID(-1),aritistID(-1), type(ArtType::painting), style(ArtStyle::fineArt), subject(ArtSbuject::nature), yearMade(2022), width(0.00),height(0.00),depth(0.00),price(0.00)
-
+        // default constructor: ID(-1),aritistID(-1), type(ArtType::painting), style(ArtStyle::fineArt), subject(ArtSbuject::nature), yearMade(2022), width(0.00),height(0.00),depth(0.00),price(0.00)
+        Artwork() : ID(-1), artistID(-1), type(ArtType::painting), style(ArtStyle::fineArt), subject(ArtSubject::nature), yearMade(2022), width(0.00), height(0.00), depth(0.00), price(0.00) {}
         // accessors
         int getID() const;             // return the id or the artwork
         int getArtistID() const;       // return the artistID
@@ -62,7 +62,6 @@ namespace NS_ARTGALLERY
         void setYearMade(int year);                      // year-->yearMade
         void setDimension(double w, double h, double d); // w-->width, h->height, d->depth
         void setPrice(double thePrice);                  // thePrice->price
-
     private:
         int ID;             // a generated, unique ID
         int artistID;       // the ID of the artist who made this work
@@ -93,7 +92,8 @@ namespace NS_ARTGALLERY
     {
     public:
         // default constructor: ID(-1),name("na"),email("na"),birthYear(1900),birthPlace("na"),primaryArtType(ArtType::painting)
-        Artist();
+        Artist() : ID(-1), name("na"), email("na"), birthYear(1900), birthPlace("na"), primaryArtType(ArtType::painting) {}
+        Artist(int theID, string theName, string theEmail, int theBirthYear, string theBirthPlace, ArtType thePrimaryType) : ID(theID), name(theName), email(theEmail), birthYear(theBirthYear), birthPlace(theBirthPlace), primaryArtType(thePrimaryType) {}
 
         // accessors
         // returns an artist's ID
