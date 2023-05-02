@@ -5,7 +5,7 @@
 //  implement/define the member functions of the following classes:
 //     1. class Customer; 2. class Curation; 3. class Sale; 4. class ArtGallery
 //
-// created by: [your name]
+// created by: [Sidney Thomas]
 // date:
 
 #include "Customer_Curation_Sale_Gallery.h"
@@ -96,13 +96,11 @@ namespace NS_ARTGALLERY
         return customerID;
     }
 
-    // return a sale's artworkID
     int Sale::getArtworkID() const
     {
         return artworkID;
     }
 
-    // return a sale's date
     Date Sale::getSaleDate() const
     {
         return saleDate;
@@ -177,63 +175,89 @@ namespace NS_ARTGALLERY
 
     int Gallery::getArtistID(string name, string email) const
     {
+        // loop through each artist in the artistsList
         for (auto artist : artistsList)
         {
+            // check if the artist's name and email match the input parameters
             if (artist.Artist::getName() == name && artist.Artist::getEmail() == email)
             {
+                // if there is a match, return the artist's ID
                 return artist.Artist::getID();
             }
         }
+        // if no match was found, return -1
         return -1;
     }
 
     int Gallery::getCustomerID(string name, string email) const
     {
+        // loop through each artist in the customersList
         for (auto customer : customersList)
         {
+            // check if the artist's name and email match the input parameters
             if (customer.Customer::getName() == name && customer.Customer::getEmail() == email)
             {
+                // if there is a match, return the customer's ID
                 return customer.Customer::getID();
             }
         }
+        // if no match was found, return -1
         return -1;
     }
 
     vector<int> Gallery::getIDsOfArtworksForSale() const
     {
+        // create an empty vector to store the IDs of artworks for sale
         vector<int> IDsOfArtworksForSale;
+
+        // loop through each artwork in the artworksForSale vector
         for (auto artwork : artworksForSale)
         {
             cout << artwork.Artwork::getID() << "\n";
+
+            // add the artwork's ID to the IDsOfArtworksForSale vector
             IDsOfArtworksForSale.push_back(artwork.Artwork::getID());
         }
+        // return the vector of artwork IDs
         return IDsOfArtworksForSale;
     }
 
     vector<int> Gallery::getIDsOfArtistsForSale() const
     {
+        // create an empty vector to store the IDs of artists for sale
         vector<int> IDsOfArtistsForSale;
+
+        // loop through each artwork in the artworksForSale vector
         for (auto artwork : artworksForSale)
         {
             cout << artwork.Artwork::getArtistID() << "\n";
+
+            // add the artist's ID to the IDsOfArtistsForSale vector
+            IDsOfArtistsForSale.push_back(artwork.Artwork::getArtistID());
         }
+
+        // return the vector of artists IDs
         return IDsOfArtistsForSale;
     }
 
     vector<pair<string, int>> Gallery::genArtworksReport(ReportType reportType)
     {
+        // create a vector to hold the report
         vector<pair<string, int>> report;
 
         if (reportType == ReportType::artType)
         {
+            // count the number of artworks of each type
             int paintingCount = 0;
             int photographyCount = 0;
             int drawingCount = 0;
             int sculptureCount = 0;
             int otherCount = 0;
 
+            // loop through each artwork in the gallery
             for (auto &artwork : Gallery::artworksCurated)
             {
+                // add the artwork to the appropriate count
                 switch (artwork.getType())
                 {
                 case ArtType::painting:
@@ -253,7 +277,7 @@ namespace NS_ARTGALLERY
                     break;
                 }
             }
-
+            // add the artwork type & counts to the report
             report.push_back(make_pair(toStr_ArtType(ArtType::painting), paintingCount));
             report.push_back(make_pair(toStr_ArtType(ArtType::photography), photographyCount));
             report.push_back(make_pair(toStr_ArtType(ArtType::drawing), drawingCount));
@@ -262,14 +286,17 @@ namespace NS_ARTGALLERY
         }
         else if (reportType == ReportType::artStyle)
         {
+            // count the number of artworks of each type
             int fineArtCount = 0;
             int abstractCount = 0;
             int modernCount = 0;
             int popArtCount = 0;
             int otherCount = 0;
 
+            // loop through each artwork in the gallery
             for (auto &artwork : Gallery::artworksCurated)
             {
+                // add the artwork to the appropriate count
                 switch (artwork.getStyle())
                 {
                 case ArtStyle::fineArt:
@@ -290,6 +317,7 @@ namespace NS_ARTGALLERY
                 }
             }
 
+            // add the artwork type & counts to the report
             report.push_back(make_pair(toStr_ArtStyle(ArtStyle::fineArt), fineArtCount));
             report.push_back(make_pair(toStr_ArtStyle(ArtStyle::abstract), abstractCount));
             report.push_back(make_pair(toStr_ArtStyle(ArtStyle::modern), modernCount));
@@ -298,14 +326,17 @@ namespace NS_ARTGALLERY
         }
         else if (reportType == ReportType::artSubject)
         {
+            // count the number of artworks of each type
             int natureCount = 0;
             int portraitCount = 0;
             int animalCount = 0;
             int cartoonCount = 0;
             int otherCount = 0;
 
+            // loop through each artwork in the gallery
             for (auto &artwork : Gallery::artworksCurated)
             {
+                // add the artwork to the appropriate count
                 switch (artwork.getSubject())
                 {
                 case ArtSubject::nature:
@@ -326,6 +357,7 @@ namespace NS_ARTGALLERY
                 }
             }
 
+            // add the artwork type & counts to the report
             report.push_back(make_pair(toStr_ArtSubject(ArtSubject::nature), natureCount));
             report.push_back(make_pair(toStr_ArtSubject(ArtSubject::portrait), portraitCount));
             report.push_back(make_pair(toStr_ArtSubject(ArtSubject::animal), animalCount));
@@ -333,6 +365,7 @@ namespace NS_ARTGALLERY
             report.push_back(make_pair(toStr_ArtSubject(ArtSubject::other), otherCount));
         }
 
+        // return the report
         return report;
     }
 
@@ -366,14 +399,14 @@ namespace NS_ARTGALLERY
             {
                 return existingArtist.getID();
             }
-
-            // Generate a unique ID for the artist
-            static int artistID = uniqueIDs::next_artistID();
-
-            // Set the artist's ID and add it to the list
-            artist.setID(artistID);
-            artistsList.push_back(artist);
         }
+        // Generate a unique ID for the artist
+        int artistID = uniqueIDs::next_artistID();
+
+        // Set the artist's ID and add it to the list
+        artist.setID(artistID);
+        artistsList.push_back(artist);
+
         return artist.getID(); // return artist's ID
     }
 
@@ -386,14 +419,15 @@ namespace NS_ARTGALLERY
             {
                 return existingCustomer.getID();
             }
-
-            // Generate a unique ID for the customer
-            static int customerID = uniqueIDs::next_customerID();
-
-            // Set the artist's ID and add it to the list
-            customer.setID(customerID);
-            customersList.push_back(customer);
         }
+
+        // generate a unique ID for the customer
+        static int customerID = uniqueIDs::next_customerID();
+
+        // set the artist's ID and add it to the list
+        customer.setID(customerID);
+        customersList.push_back(customer);
+
         return customer.getID(); // return customer's ID
     }
 
@@ -469,7 +503,7 @@ namespace NS_ARTGALLERY
             Sale newSale(customer.getID(), artworkID, newSale.getSaleDate());
             salesRecords.push_back(newSale);
 
-            // remove the artwork from the artworkListForSale
+            // remove the artwork from the artworkForSale list
             artworksForSale.erase(it);
         }
     }

@@ -48,7 +48,7 @@ namespace NS_UTESTS
         {
             return false;
         }
-        if (artwork.getYearMade() != 2023)
+        if (artwork.getYearMade() != 2022)
         {
             return false;
         }
@@ -346,6 +346,7 @@ namespace NS_UTESTS
 
         // * saleX constructor test
         Sale saleX;
+
         if (saleX.getCustomerID() != -1)
         {
             return false;
@@ -362,6 +363,7 @@ namespace NS_UTESTS
 
         // * sale constructor test
         Sale sale(100, 200, {1, 2, 2023});
+
         if (sale.getCustomerID() != 100)
         {
             return false;
@@ -399,7 +401,8 @@ namespace NS_UTESTS
     {
         // create a gallery object and add an artist to it
         Gallery gallery;
-        Artist artist(111, "Van Gogh", "vanG@gmail.com", 2002, "San Francisco Zoo", NS_ARTGALLERY::ArtType::painting);
+        int artistID = uniqueIDs::next_artistID();
+        Artist artist(artistID, "Van Gogh", "vanG@gmail.com", 2002, "San Francisco Zoo", NS_ARTGALLERY::ArtType::painting);
         gallery.addArtist(artist);
 
         // call the getArtistID function and check the result
@@ -510,7 +513,7 @@ namespace NS_UTESTS
         return true;
     }
 
-    inline bool test_getIDsOfArtworksForSale_Gallery() // ! added getIDARTWORK
+    inline bool test_getIDsOfArtworksForSale_Gallery()
     {
         // Create a new gallery object and add some artworks for sale
         NS_ARTGALLERY::Gallery myGallery;

@@ -9,14 +9,10 @@
 #include "util_date_uniqueIDs.h"
 #include "unitTests.h"
 
-// please feel free to create a text-based user interface to manage an art gallery
-
 int main()
 {
     using namespace NS_ARTGALLERY;
     using namespace NS_UTESTS;
-
-    // call your unit tests
 
     // * UNIT TEST - Artwork
     if (test_Artwork() == true)
@@ -152,8 +148,6 @@ int main()
         cout << "test_getIDsOfArtistsForSale_Gallery is false (FAILED)\n";
     }
 
-    // TODO : get artwork for sale test to add
-
     if (test_genArtworksReport_artType_Gallery() == true)
     {
         cout << "test_genArtworksReport_artType_Gallery is true (SUCCESS)\n";
@@ -180,7 +174,6 @@ int main()
     {
         cout << "test_sellArtwork_Gallery is false (FAILED)\n";
     }
-    cout << "it works" << endl;
 
     return 0;
 }

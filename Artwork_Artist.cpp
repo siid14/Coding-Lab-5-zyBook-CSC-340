@@ -12,8 +12,6 @@
 namespace NS_ARTGALLERY
 {
 
-    //*** implement all the functions declared in "Artwork_Artist.h"
-
     // * Artwork functions
     int Artwork::getID() const
     {

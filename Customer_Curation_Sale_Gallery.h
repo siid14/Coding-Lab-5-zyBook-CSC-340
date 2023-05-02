@@ -168,6 +168,7 @@ namespace NS_ARTGALLERY
      curationRecords; //collection of art curation records
      salesRecords; //collection of art sales records
      */
+
     class Gallery
     {
     public:
@@ -186,8 +187,8 @@ namespace NS_ARTGALLERY
         string getWebURL() const;
 
         unsigned long num_artists() const;         // returns the size of artistsList
-        unsigned long num_artworksCurated() const; // returns the size of artworksCurated;
-        unsigned long num_artworksForSale() const; // returns the size of artworksForSale;
+        unsigned long num_artworksCurated() const; // returns the size of artworksCurated
+        unsigned long num_artworksForSale() const; // returns the size of artworksForSale
         unsigned long num_customers() const;       // returns the size of customersList
         unsigned long num_curations() const;       // returns the size of curationRecords
         unsigned long num_sales() const;           // returns the size of salesRecords
